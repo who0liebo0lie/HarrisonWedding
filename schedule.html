@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Schedule &middot; Wesley &amp; Julia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Righteous&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--boug:#7A1438;--mag:#D81B60;--teq:#E8631C;--mar:#F2A93B;--palm:#9C9851;
+--dusk:#23111C;--npink:#FF2D78;--norange:#FF7A2F;--dgold:#FFC93C;--dlilac:#F3D9E6;
+--cream:#FFF6EF;--ink:#2B0F1A;}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;color:var(--ink);background:var(--cream);overflow-x:hidden;line-height:1.6;}
+.display{font-family:'Righteous',cursive;letter-spacing:.5px;}
+a{color:inherit;}
+.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(18px,5vw,40px);}
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;align-items:center;justify-content:space-between;
+padding:15px clamp(18px,5vw,44px);transition:background .4s,box-shadow .4s;}
+nav.solid{background:rgba(122,20,56,.95);box-shadow:0 6px 24px rgba(0,0,0,.18);}
+.brand{display:flex;align-items:center;text-decoration:none;line-height:0;}
+.navlinks{display:flex;gap:18px;align-items:center;}
+.navlinks a{color:#fff;text-decoration:none;font-size:12px;letter-spacing:.6px;text-transform:uppercase;opacity:.9;}
+.navlinks a:hover,.navlinks a.active{opacity:1;border-bottom:2px solid var(--mar);padding-bottom:2px;}
+.rsvp-btn{background:var(--mar);color:var(--boug)!important;padding:9px 18px;border-radius:999px;font-weight:600;
+text-transform:uppercase;font-size:11px;letter-spacing:1px;border:none!important;}
+.rsvp-btn:hover{background:var(--teq);color:#fff!important;}
+.menu-toggle{display:none;background:none;border:none;color:#fff;font-size:25px;cursor:pointer;z-index:50;}
+@media(max-width:940px){.navlinks{position:fixed;inset:0 0 0 32%;background:var(--boug);flex-direction:column;
+justify-content:center;transform:translateX(100%);transition:transform .35s;padding:40px;gap:22px;}
+.navlinks.open{transform:translateX(0);}.menu-toggle{display:block;}}
+/* page header band */
+.phead{background:linear-gradient(155deg,var(--boug),#a51e56 45%,var(--teq));color:#fff;text-align:center;
+padding:150px 20px 70px;position:relative;overflow:hidden;}
+.phead h1{font-family:'Righteous',cursive;font-size:clamp(34px,6vw,62px);margin-bottom:10px;}
+.phead p{letter-spacing:2px;text-transform:uppercase;font-size:13px;opacity:.9;}
+.eyebrow{text-transform:uppercase;letter-spacing:3px;font-size:12px;color:var(--teq);margin-bottom:8px;}
+.sect-title{font-family:'Righteous',cursive;font-size:clamp(28px,4.4vw,48px);color:var(--boug);margin-bottom:14px;}
+section{padding:clamp(50px,8vw,90px) 0;}
+.btn{display:inline-block;background:var(--teq);color:#fff;text-decoration:none;padding:13px 28px;border-radius:999px;
+font-weight:600;letter-spacing:1px;text-transform:uppercase;font-size:12px;border:none;cursor:pointer;}
+.btn:hover{background:var(--mag);}
+.btn.gold{background:var(--mar);color:var(--boug);}.btn.gold:hover{background:var(--teq);color:#fff;}
+/* sparkle */
+.spark{position:absolute;width:6px;height:6px;border-radius:50%;background:#fff;opacity:0;animation:tw 3.4s infinite;}
+@keyframes tw{0%,100%{opacity:0;transform:scale(.5)}50%{opacity:.95;transform:scale(1.2)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s,transform .8s;}
+.reveal.in{opacity:1;transform:none;}
+/* cards */
+.cards{display:grid;gap:20px;}
+.card{background:#fff;border-radius:16px;padding:24px;box-shadow:0 14px 40px rgba(122,20,56,.08);}
+.card h3{font-family:'Righteous',cursive;color:var(--boug);font-size:20px;margin-bottom:6px;}
+/* footer */
+footer{background:var(--dusk);color:#c9a9b6;text-align:center;padding:44px 20px;font-size:13px;}
+footer .fn{font-family:'Righteous',cursive;color:#fff;font-size:24px;margin-bottom:8px;}
+footer a{color:var(--dgold);text-decoration:none;}
+footer .tags{margin:14px 0;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;}
+footer .tags span{border:1px solid rgba(255,201,60,.4);color:var(--dgold);padding:5px 12px;border-radius:999px;font-size:12px;}
+/* music */
+
+
+
+.route-wrap{overflow-x:auto;padding-bottom:8px;}
+.route{position:relative;min-width:660px;padding:34px 0 6px;margin:20px 0;}
+.route .line{position:absolute;top:44px;left:4%;right:4%;height:3px;background:linear-gradient(90deg,var(--boug),var(--teq),var(--mar));border-radius:3px;}
+.ship{position:absolute;top:24px;font-size:22px;animation:sail 16s linear infinite;}
+@keyframes sail{0%{left:3%}100%{left:93%}}
+.stops{position:relative;display:flex;justify-content:space-between;}
+.stop{background:none;border:none;cursor:pointer;text-align:center;width:16%;color:var(--boug);font-family:inherit;}
+.stop .dot{width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--teq);margin:0 auto 10px;transition:.3s;}
+.stop.active .dot,.stop:hover .dot{background:var(--teq);transform:scale(1.3);}
+.stop.star .dot{border-color:var(--mag);box-shadow:0 0 0 4px rgba(216,27,96,.2);}
+.stop .d{font-size:11px;letter-spacing:.4px;text-transform:uppercase;display:block;}
+.stop .p{font-size:12px;font-weight:600;margin-top:2px;display:block;}
+.daycard{display:none;background:#fff;border-radius:18px;padding:30px;margin-top:20px;box-shadow:0 16px 44px rgba(122,20,56,.1);border-left:6px solid var(--teq);}
+.daycard.show{display:block;animation:fade .5s;}
+.daycard.wed{border-left-color:var(--mag);}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.daycard .badge{display:inline-block;background:var(--mar);color:var(--boug);font-size:12px;font-weight:600;padding:5px 14px;border-radius:999px;letter-spacing:.5px;text-transform:uppercase;margin-bottom:12px;}
+.daycard h3{font-family:'Righteous',cursive;color:var(--boug);font-size:26px;margin-bottom:6px;}
+.daycard .meta{color:#8a6b73;font-size:13px;margin-bottom:14px;text-transform:uppercase;letter-spacing:1px;}
+</style></head><body>
+<script>
+/* Guest-list gate: bounce to landing page if not verified. Fails open if storage blocked. */
+try{if(!localStorage.getItem('cjk26_guest')){location.replace('index.html');}}catch(e){}
+</script><nav id="nav"><a class="brand" href="index.html" aria-label="Wesley and Julia home"><svg viewBox="0 0 210 46" height="34" role="img" aria-label="W and J monogram"><defs><linearGradient id="ng" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F2A93B"/><stop offset="1" stop-color="#FFC93C"/></linearGradient></defs><circle cx="23" cy="23" r="20" fill="none" stroke="url(#ng)" stroke-width="2"/><text x="23" y="30" text-anchor="middle" font-family="Righteous,Georgia,serif" font-size="19" fill="#fff">W<tspan fill="#FFC93C">&amp;</tspan>J</text><text x="54" y="21" font-family="Righteous,Georgia,serif" font-size="15" fill="#fff">Harrison Set Sail</text><text x="55" y="36" font-family="Poppins,Helvetica,sans-serif" font-size="9.5" letter-spacing="2.6" fill="#FFC93C">2027</text></svg></a>
+<button class="menu-toggle" id="mt" aria-label="Menu">&#9776;</button>
+<div class="navlinks" id="nl"><a href="index.html">Home</a><a href="story.html">Our Story</a><a href="details.html">Details</a><a href="schedule.html" class="active">Schedule</a><a href="travel.html">Travel</a><a href="ship.html">Explore Ship</a><a href="pickleball.html">Pickleball</a><a href="bingo.html">Bingo</a><a href="attire.html">Attire</a><a href="faq.html">FAQ</a><a href="rsvp.html" class="rsvp-btn">RSVP</a></div></nav><header class="phead"><h1>The Schedule</h1><p>Follow the ship &middot; tap a stop</p></header>
+<section><div class="wrap">
+<p class="reveal" style="text-align:center;max-width:640px;margin:0 auto 6px;color:#4a2b34">Five days, five chapters. Tap any stop along the route to see what's happening that day.</p>
+<div class="route-wrap"><div class="route"><div class="line"></div><div class="ship">🚢</div><div class="stops"><button class="stop" data-day="1"><span class="dot"></span><span class="d">Sat</span><span class="p">White Party</span></button><button class="stop" data-day="2"><span class="dot"></span><span class="d">Sun</span><span class="p">Pickleball</span></button><button class="stop" data-day="3"><span class="dot"></span><span class="d">Mon</span><span class="p">Beach Day</span></button><button class="stop star" data-day="4"><span class="dot"></span><span class="d">Tue</span><span class="p">The Wedding</span></button><button class="stop" data-day="5"><span class="dot"></span><span class="d">Wed</span><span class="p">After-Party</span></button><button class="stop" data-day="6"><span class="dot"></span><span class="d">Thu</span><span class="p">Disembark</span></button></div></div></div>
+<div class="daycard daycard" data-day="1"><span class="badge">⚪ White Party</span><h3>Welcome aboard &mdash; in white</h3><p class="meta">Saturday, Jan 23 &middot; Board 4:00 PM</p><p>The celebration ignites the moment you step on the ship. Wear your best all-white and join us for the Welcome White Party: the first gathering of our five-day world, where the whole group meets, toasts, and sets the tone for the week.</p></div><div class="daycard daycard" data-day="2"><span class="badge">🏓 Pickleball</span><h3>Doubles pickleball tournament</h3><p class="meta">Sunday, Jan 24 &middot; At Sea</p><p>Grab a partner &mdash; it's a doubles-only bracket with a champion crowned. Whether you're competing or cheering, it's the perfect sea-day energy. Sign-ups and court time announced onboard.</p></div><div class="daycard daycard" data-day="3"><span class="badge">🏝️ Beach Day</span><h3>Perfect Day at CocoCay</h3><p class="meta">Monday, Jan 25 &middot; 7:00 AM &ndash; 5:00 PM</p><p>A free day in paradise. Beaches, pools, and island time on Royal Caribbean's private island &mdash; rest up and soak in the sun before the big day.</p></div><div class="daycard wed daycard" data-day="4"><span class="badge">💍 The Wedding</span><h3>Sunset Sparkle wedding</h3><p class="meta">Tuesday, Jan 26 &middot; Nassau, Bahamas</p><p>The heart of it all. Wesley &amp; Julia say &ldquo;I do&rdquo; in Nassau, surrounded by the people they love, in a celebration drenched in sunset pinks and oranges. Dress code: Sunset Sparkle &mdash; see the Attire page.</p></div><div class="daycard daycard" data-day="5"><span class="badge">✨ After-Party</span><h3>The after-party</h3><p class="meta">Wednesday, Jan 27 &middot; At Sea</p><p>One last big night. Music, dancing, and sparkle under the stars &mdash; the send-off this week deserves.</p></div><div class="daycard daycard" data-day="6"><span class="badge">🚢 Disembark</span><h3>Until next time</h3><p class="meta">Thursday, Jan 28 &middot; Arrive 6:00 AM</p><p>We arrive back in Port Canaveral. Safe travels home &mdash; and thank you for celebrating with us.</p></div>
+</div></section><footer><p class="fn">Wesley Harrison &amp; Julia Porrino</p>
+<p>January 26, 2027 &middot; Nassau, Bahamas &middot; Harmony of the Seas</p>
+<div class="tags"><span>#OneTextAwayForever</span><span>#HarrisonsSetSail</span><span>#SunsetSparkleWedding</span></div>
+<p>Booking through <a href="details.html">Aligned Journeys</a> &nbsp;|&nbsp; <a href="rsvp.html">RSVP</a> &nbsp;|&nbsp; <a href="classic.html">Classic-style preview</a></p>
+</footer><script>
+const nv=document.getElementById('nav');addEventListener('scroll',()=>nv.classList.toggle('solid',scrollY>60));
+const mt=document.getElementById('mt');if(mt)mt.onclick=()=>document.getElementById('nl').classList.toggle('open');
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.querySelectorAll('.stop').forEach(s=>s.onclick=()=>{
+document.querySelectorAll('.stop').forEach(x=>x.classList.remove('active'));s.classList.add('active');
+document.querySelectorAll('.daycard').forEach(c=>c.classList.remove('show'));
+document.querySelector('.daycard[data-day="'+s.dataset.day+'"]').classList.add('show');});
+document.querySelector('.stop').click();</script></body></html>

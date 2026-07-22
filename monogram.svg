@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Righteous&amp;family=Poppins:wght@400;500&amp;display=swap');
+      .mono { font-family: 'Righteous', Georgia, serif; }
+      .small { font-family: 'Poppins', Helvetica, sans-serif; }
+    </style>
+    <linearGradient id="sunset" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#F2A93B"/>
+      <stop offset="45%"  stop-color="#E8631C"/>
+      <stop offset="100%" stop-color="#D81B60"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%"   stop-color="#F2A93B"/>
+      <stop offset="60%"  stop-color="#E8631C"/>
+      <stop offset="100%" stop-color="#7A1438"/>
+    </linearGradient>
+    <clipPath id="circleClip"><circle cx="200" cy="200" r="150"/></clipPath>
+  </defs>
+
+  <!-- deep sunset field -->
+  <circle cx="200" cy="200" r="150" fill="#7A1438"/>
+
+  <g clip-path="url(#circleClip)">
+    <!-- sky gradient -->
+    <rect x="50" y="50" width="300" height="300" fill="url(#sunset)" opacity="0.95"/>
+    <!-- the sun -->
+    <circle cx="200" cy="232" r="62" fill="#FFC93C" opacity="0.95"/>
+    <!-- sea -->
+    <rect x="50" y="266" width="300" height="84" fill="#7A1438"/>
+    <!-- waves -->
+    <path d="M50 280 q25 -9 50 0 t50 0 t50 0 t50 0 t50 0 t50 0" fill="none" stroke="#F2A93B" stroke-width="3" opacity="0.9"/>
+    <path d="M50 296 q25 -9 50 0 t50 0 t50 0 t50 0 t50 0 t50 0" fill="none" stroke="#E8631C" stroke-width="3" opacity="0.85"/>
+    <path d="M50 312 q25 -9 50 0 t50 0 t50 0 t50 0 t50 0 t50 0" fill="none" stroke="#D81B60" stroke-width="3" opacity="0.7"/>
+    <!-- sparkles -->
+    <circle cx="118" cy="112" r="3.5" fill="#fff" opacity="0.95"/>
+    <circle cx="286" cy="132" r="2.8" fill="#fff" opacity="0.9"/>
+    <circle cx="262" cy="92"  r="2.2" fill="#FFF3E6" opacity="0.85"/>
+    <circle cx="140" cy="160" r="2.2" fill="#fff" opacity="0.8"/>
+  </g>
+
+  <!-- ring -->
+  <circle cx="200" cy="200" r="150" fill="none" stroke="url(#ring)" stroke-width="7"/>
+  <circle cx="200" cy="200" r="137" fill="none" stroke="#FFF6EF" stroke-width="1.6" opacity="0.55"/>
+
+  <!-- monogram letters -->
+  <g style="paint-order:stroke; stroke:#7A1438; stroke-width:7px;">
+    <text class="mono" x="139" y="212" text-anchor="middle" font-size="96" fill="#FFF6EF">W</text>
+    <text class="mono" x="200" y="200" text-anchor="middle" font-size="52" fill="#FFC93C">&amp;</text>
+    <text class="mono" x="258" y="212" text-anchor="middle" font-size="96" fill="#FFF6EF">J</text>
+  </g>
+
+  <!-- names + year -->
+  <text class="small" x="200" y="258" text-anchor="middle" font-size="15.5" letter-spacing="3.2" fill="#FFF6EF">WESLEY &amp; JULIA</text>
+  <text class="small" x="200" y="332" text-anchor="middle" font-size="13" letter-spacing="5" fill="#FFC93C">2027</text>
+</svg>

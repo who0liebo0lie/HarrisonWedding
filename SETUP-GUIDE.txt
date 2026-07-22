@@ -1,0 +1,167 @@
+WESLEY & JULIA — WEDDING SITE SETUP GUIDE
+=========================================
+
+FILES: index (landing + guest gate), story, details, schedule, travel, ship,
+pickleball, bingo, attire, faq, rsvp, ADD-GUESTS (helper tool).
+
+
+-------------------------------------------------
+1. PUBLISH FREE ON GITHUB PAGES
+-------------------------------------------------
+1. Make a free account at github.com
+2. New repository -> name it harrisonsetsail2027 -> Public -> Create
+3. "Add file" -> "Upload files" -> drag in EVERY file from this folder -> Commit
+4. Settings -> Pages -> Source: "Deploy from a branch" -> main / (root) -> Save
+5. Live in ~1 minute at https://YOURNAME.github.io/harrisonsetsail2027/
+6. Custom domain (harrisonsetsail2027.com):
+   a) Buy the domain (Namecheap, Cloudflare, or Porkbun -- about $12/year).
+      Buy ONLY the domain; decline hosting, email, and site-builder add-ons.
+   b) GitHub -> your repo -> Settings -> Pages -> Custom domain ->
+      type harrisonsetsail2027.com -> Save
+   c) At your registrar, open DNS settings and add these records:
+        Type: CNAME   Host: www    Value: YOURNAME.github.io
+        Type: A       Host: @      Value: 185.199.108.153
+        Type: A       Host: @      Value: 185.199.109.153
+        Type: A       Host: @      Value: 185.199.110.153
+        Type: A       Host: @      Value: 185.199.111.153
+   d) Back on the GitHub Pages screen, tick "Enforce HTTPS" once it lets you.
+   Changes can take a few hours (occasionally up to 24) to take effect.
+
+
+-------------------------------------------------
+2. THE GUEST LIST GATE  (who can see the site)
+-------------------------------------------------
+Guests type their name on the landing page to get in. Names are stored as
+scrambled "hashes" so the guest list is NOT readable in the page source.
+
+TO ADD YOUR REAL GUESTS:
+1. Open ADD-GUESTS.html (double-click it — works right on your computer)
+2. Paste in every guest name, one per line -> click Generate
+3. Copy the line it produces (starts with "const GUESTLIST=[")
+4. Open index.html in any text editor, find the line starting with
+   "const GUESTLIST=[" and replace that whole line with yours -> save -> re-upload
+
+TIPS
+- Add BOTH partners in a couple, plus common nickname spellings
+  (e.g. "Jennifer Brown" AND "Jenny Brown") so no one gets stuck.
+- Matching ignores capitals, spaces, and punctuation.
+- Once someone gets in, their browser remembers them.
+
+HONEST NOTE ON SECURITY
+This is a "soft gate." It stops the site from being casually found, shared
+around, or indexed — which is what you want. But a determined tech-savvy person
+could bypass it, because a free static site has no real login system. Don't put
+anything truly sensitive (home address, financial info) on the site.
+For a true login you'd need a paid host (Squarespace member areas, Netlify
+Identity, or a password-protected host).
+
+
+-------------------------------------------------
+3. FORMS: RSVP + PICKLEBALL  (free, 5 minutes)
+-------------------------------------------------
+EASIEST — FORMSPREE:
+1. Go to formspree.io -> free account -> New Form
+2. Copy your form ID (looks like: xyzabcd)
+3. In rsvp.html and pickleball.html, find "YOUR_FORM_ID" and replace it
+4. Submissions email straight to you and collect in a dashboard you can export
+
+ALTERNATIVE — GOOGLE FORMS:
+Build a Google Form with the same questions, then link to it from those pages.
+Responses land in a Google Sheet automatically (best if you want the bingo
+game to run on real data — see below).
+
+
+-------------------------------------------------
+4. THE BINGO GAME  (needs a small free backend)
+-------------------------------------------------
+The board works in DEMO MODE right away with sample facts. To run it for real —
+real guest facts, saved guesses, and a live leaderboard — a static site can't
+remember anything on its own, so it needs somewhere to store data. Free option:
+
+STEP 1 — Collect facts
+  Use a Google Form for the RSVP so every response (name, email, fun fact)
+  lands in a Google Sheet.
+
+STEP 2 — Set up the sheet
+  In your responses Sheet, make sure you have columns:
+     Name | Email | Fun Fact
+  Add a second tab named "Guesses" (leave it empty).
+
+STEP 3 — Add the free backend
+  In the Sheet: Extensions -> Apps Script -> delete everything and paste the
+  code from BINGO-BACKEND.gs (in this folder) -> Save
+  Then: Deploy -> New deployment -> type "Web app"
+     Execute as: Me
+     Who has access: Anyone
+  -> Deploy -> copy the Web app URL
+
+STEP 4 — Connect it
+  Open bingo.html, find the line:   const API_URL = "";
+  Paste your URL between the quotes -> save -> re-upload.
+
+That's it. Facts load automatically, guesses save, leaderboard goes live.
+
+HOW SCORING WORKS
+Apps Script compares each guess to the real name in your sheet and counts
+correct answers. Nobody can see the answer key — it stays in your private sheet.
+
+DON'T WANT A BACKEND?
+Keep demo mode and run bingo the analog way: export the fun facts, print boards,
+and hand them out. The page still works as the rules-and-facts hub.
+
+
+-------------------------------------------------
+5. INVITING PEOPLE FROM A CONTACT SPREADSHEET
+-------------------------------------------------
+The website itself can't send email. Free ways to blast your invite link:
+
+OPTION A — GOOGLE SHEETS MAIL MERGE (free, recommended)
+1. Make a Google Sheet with columns:  Name | Email
+2. Extensions -> Apps Script -> paste the code from MAIL-MERGE.gs (this folder)
+3. Edit the SUBJECT and BODY at the top of that script (your site link goes here)
+4. Save -> Run -> approve permissions -> it emails everyone from your Gmail
+   (Gmail limit: ~500/day on a personal account — plenty for a wedding)
+
+OPTION B — MAIL MERGE ADD-ON
+Google Workspace Marketplace -> "Yet Another Mail Merge" — upload contacts,
+click send, includes open tracking. Free tier covers ~50/day.
+
+OPTION C — BREVO or MAILCHIMP (free tiers)
+Import your spreadsheet as a contact list, design a pretty invite email, send.
+Best if you want a designed email with your sunset colors and tracking.
+
+OPTION D — TEXT / WHATSAPP
+Honestly the highest open rate for a wedding. Send the link plus the reminder:
+"Enter your full name exactly as it appears on your invitation."
+
+
+OPTION E — TEXT IT INSTEAD (highest open rate — recommended)
+Open TEXT-INVITES.html on your PHONE (email the file to yourself, or upload it
+with the site and visit harrisonsetsail2027.com/TEXT-INVITES.html).
+1. Paste your site link
+2. Edit the message (it's already written for you)
+3. Paste your contacts, one per line:   Jane Smith, 555-123-4567
+   (copy/paste straight out of a spreadsheet works)
+4. Tap "Text" next to each guest — your Messages app opens with the whole
+   message already written and the right person filled in. Just hit send.
+It checks off who you've already texted, and makes a QR code of your link too.
+
+WHY NOT A BULK TEXTING SERVICE?
+Services like EZ Texting or Twilio require business registration and proof that
+recipients opted in to marketing texts. Wedding guests haven't, so those accounts
+often get rejected or blocked. Sending from your own phone avoids all of it.
+Send in batches of 20-30 and avoid one big group thread.
+
+WHATEVER YOU USE, INCLUDE:
+  - The site link
+  - "This site is for invited guests — enter your first and last name to get in"
+  - Booking deadline: final payment end of October 2026
+
+
+-------------------------------------------------
+6. OTHER THINGS TO FILL IN
+-------------------------------------------------
+- travel.html  -> Aligned Journeys booking link + your real group rates
+- details.html -> your Zelle contact
+- faq.html     -> your Zelle contact
+- All pages    -> photos and wording, edit freely in any text editor

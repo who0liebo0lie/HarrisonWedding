@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Text the invite — Wesley &amp; Julia</title>
+<link href="https://fonts.googleapis.com/css2?family=Righteous&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--boug:#7A1438;--mag:#D81B60;--teq:#E8631C;--mar:#F2A93B;--cream:#FFF6EF;--ink:#2B0F1A;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Poppins',sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;padding-bottom:60px;}
+header{background:linear-gradient(155deg,var(--boug),#a51e56 45%,var(--teq));color:#fff;padding:34px 20px;text-align:center;}
+header h1{font-family:'Righteous',cursive;font-size:26px;}
+header p{font-size:13px;opacity:.9;}
+.wrap{max-width:640px;margin:0 auto;padding:22px 18px;}
+.card{background:#fff;border-radius:16px;padding:20px;box-shadow:0 12px 34px rgba(122,20,56,.08);margin-bottom:18px;}
+h2{font-family:'Righteous',cursive;color:var(--boug);font-size:18px;margin-bottom:8px;}
+label{display:block;font-weight:600;color:var(--boug);font-size:13px;margin:12px 0 6px;}
+textarea,input{width:100%;padding:11px 13px;border:1.5px solid #efd9cf;border-radius:10px;font-family:inherit;font-size:14px;background:#fffdfb;}
+textarea:focus,input:focus{outline:none;border-color:var(--teq);}
+.hint{font-size:12px;color:#8a6b73;margin-top:5px;}
+button{background:var(--teq);color:#fff;border:none;padding:12px 22px;border-radius:999px;font-family:inherit;
+font-weight:600;font-size:13px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;}
+button:hover{background:var(--mag);}
+button.ghost{background:#f3e2d8;color:#8a5a3a;}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+.person{display:flex;align-items:center;gap:12px;padding:12px;border-bottom:1px solid #f4e6dd;}
+.person:last-child{border-bottom:none;}
+.person .who{flex:1;min-width:0;}
+.person .nm{font-weight:600;font-size:14px;}
+.person .ph{font-size:12px;color:#8a6b73;}
+.person a{background:var(--teq);color:#fff;text-decoration:none;padding:9px 16px;border-radius:999px;font-size:12px;
+font-weight:600;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;}
+.person.done{opacity:.5;}
+.person.done a{background:#9C9851;}
+.person input[type=checkbox]{width:20px;height:20px;accent-color:var(--teq);flex:none;}
+.count{background:#fff2e8;border-radius:10px;padding:12px;font-size:13px;color:#8a5a3a;text-align:center;margin-bottom:14px;}
+#qr{display:flex;justify-content:center;padding:16px;background:#fff;border-radius:12px;}
+.tip{background:#fff2e8;border-radius:12px;padding:14px 16px;font-size:13px;color:#8a5a3a;}
+</style></head><body>
+
+<header>
+<h1>Text the invite</h1>
+<p>Tap each guest → your Messages app opens, pre-written. Just hit send.</p>
+</header>
+
+<div class="wrap">
+
+<div class="card">
+<h2>1. Your site link</h2>
+<input id="url" value="https://harrisonsetsail2027.com/">
+<p class="hint">Paste your real GitHub Pages or harrisonsetsail2027.com address.</p>
+</div>
+
+<div class="card">
+<h2>2. The message</h2>
+<label>Message template</label>
+<textarea id="msg" rows="9">Hi {name}! Wesley & Julia are getting married at sea and you're invited 🌅
+
+Ceremony: Tuesday, January 26, 2027 in Nassau, Bahamas
+Sailing: Jan 23–28 on Harmony of the Seas from Port Canaveral, FL
+
+Everything — schedule, rooms, attire & RSVP: {url}
+
+The site is just for invited guests. To get in, enter your FIRST AND LAST NAME exactly as it appears on your invitation.
+
+Rooms book through Aligned Journeys — final payment is due end of October 2026. Can't wait to celebrate with you! #HarrisonsSetSail</textarea>
+<p class="hint">{name} and {url} fill in automatically for each person.</p>
+<div class="row"><button class="ghost" onclick="copyMsg()">Copy message</button></div>
+</div>
+
+<div class="card">
+<h2>3. Your guest list</h2>
+<label>One per line — Name, Phone number</label>
+<textarea id="contacts" rows="7" placeholder="Jane Smith, 555-123-4567
+John Smith, (555) 987-6543
+Maria Garcia, +1 555 222 3333"></textarea>
+<p class="hint">Copy/paste straight from a spreadsheet — commas or tabs both work.</p>
+<div class="row"><button onclick="build()">Build my text list</button></div>
+</div>
+
+<div class="card" id="listCard" style="display:none">
+<h2>4. Send them</h2>
+<div class="count" id="count"></div>
+<div id="list"></div>
+<div class="row"><button class="ghost" onclick="resetSent()">Reset sent marks</button></div>
+</div>
+
+<div class="card">
+<h2>QR code for your link</h2>
+<p class="hint" style="margin-bottom:10px">Handy for save-the-dates, a printed card, or showing someone in person.</p>
+<div id="qr"></div>
+<div class="row"><button class="ghost" onclick="makeQR()">Generate QR</button></div>
+</div>
+
+<div class="tip">
+<strong>A few tips:</strong>
+<ul style="margin:8px 0 0 18px">
+<li>Send <strong>individually</strong>, not as one group text — group threads get chaotic fast and everyone gets every reply.</li>
+<li>Do it from your own phone. Bulk-texting services (EZ Texting, Twilio, etc.) require registration and proof people opted in, which personal invites don't have.</li>
+<li>Send in batches of 20–30 so carriers don't flag you for spam.</li>
+<li>Always include the "enter your full name" line — otherwise guests hit the gate and get stuck.</li>
+</ul>
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+var KEY='cjk26_texted';
+function sent(){try{return JSON.parse(localStorage.getItem(KEY)||'[]');}catch(e){return [];}}
+function markSent(p,on){var s=sent();if(on){if(s.indexOf(p)<0)s.push(p);}else{s=s.filter(function(x){return x!==p;});}
+try{localStorage.setItem(KEY,JSON.stringify(s));}catch(e){}updateCount();}
+function resetSent(){try{localStorage.removeItem(KEY);}catch(e){}build();}
+
+function parseContacts(){
+  var lines=document.getElementById('contacts').value.split('\n');
+  var out=[];
+  lines.forEach(function(l){
+    l=l.trim(); if(!l)return;
+    var parts=l.split(/[,\t]+/);
+    var name,phone;
+    if(parts.length>1){ name=parts[0].trim(); phone=parts.slice(1).join('').trim(); }
+    else { var m=l.match(/([+\d][\d\s().-]{6,})$/); if(!m)return;
+           phone=m[1].trim(); name=l.slice(0,l.length-m[1].length).trim(); }
+    var clean=phone.replace(/[^\d+]/g,'');
+    if(!clean)return;
+    out.push({name:name||'there', phone:clean});
+  });
+  return out;
+}
+function bodyFor(c){
+  var url=document.getElementById('url').value.trim();
+  var first=c.name.split(' ')[0];
+  return document.getElementById('msg').value.replace(/\{name\}/g,first).replace(/\{url\}/g,url);
+}
+function smsLink(c){
+  var isApple=/iPhone|iPad|iPod|Macintosh/i.test(navigator.userAgent);
+  var sep=isApple?'&':'?';
+  return 'sms:'+c.phone+sep+'body='+encodeURIComponent(bodyFor(c));
+}
+var CURRENT=[];
+function build(){
+  CURRENT=parseContacts();
+  var list=document.getElementById('list'); list.innerHTML='';
+  if(!CURRENT.length){ document.getElementById('listCard').style.display='none';
+    alert('Add at least one contact like:  Jane Smith, 555-123-4567'); return; }
+  var done=sent();
+  CURRENT.forEach(function(c){
+    var isDone=done.indexOf(c.phone)>-1;
+    var row=document.createElement('div');
+    row.className='person'+(isDone?' done':'');
+    row.innerHTML='<input type="checkbox" '+(isDone?'checked':'')+'>'+
+      '<div class="who"><div class="nm">'+c.name+'</div><div class="ph">'+c.phone+'</div></div>'+
+      '<a href="'+smsLink(c)+'">Text</a>';
+    var cb=row.querySelector('input');
+    cb.onchange=function(){ markSent(c.phone,cb.checked); row.classList.toggle('done',cb.checked); };
+    row.querySelector('a').addEventListener('click',function(){
+      setTimeout(function(){ cb.checked=true; markSent(c.phone,true); row.classList.add('done'); },600);
+    });
+    list.appendChild(row);
+  });
+  document.getElementById('listCard').style.display='block';
+  updateCount();
+}
+function updateCount(){
+  var done=sent().filter(function(p){return CURRENT.some(function(c){return c.phone===p;});}).length;
+  document.getElementById('count').innerHTML='📨 <strong>'+done+'</strong> of <strong>'+CURRENT.length+'</strong> invitations sent';
+}
+function copyMsg(){
+  var t=document.getElementById('msg').value.replace(/\{name\}/g,'there')
+    .replace(/\{url\}/g,document.getElementById('url').value.trim());
+  navigator.clipboard.writeText(t).then(function(){alert('Message copied!');},
+    function(){alert('Select the text and copy manually.');});
+}
+function makeQR(){
+  var box=document.getElementById('qr'); box.innerHTML='';
+  try{ new QRCode(box,{text:document.getElementById('url').value.trim(),width:180,height:180,
+    colorDark:'#7A1438',colorLight:'#ffffff'}); }
+  catch(e){ box.textContent='QR needs an internet connection to load.'; }
+}
+</script>
+</body></html>
